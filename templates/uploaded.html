@@ -1,0 +1,292 @@
+    {% extends "layout.html" %} {% block body %}
+<div class="container-fluid">
+    <div class="jumbotron-fluid text-center">
+        <div class="container-fluid">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3>Original</h3>
+                            <img class="img-fluid" src="static/img/img_normal.jpg" alt="image here">
+                        </div>
+    {#                    <div class="col-lg-2"></div>#}
+                        <div class="col-lg-6">
+                            <h3>Edited</h3>
+                            <img class="img-fluid" id="img_now" src="{{ url_for('static', filename=file_path) }}" alt="image here">
+                            <div class="row mt-4">
+                                <div class="col-sm-3"></div>
+                                <form class="col-sm-2"  id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                                    <button type="submit" class="btn btn-danger">Reset</button>
+                                </form>
+                                <form class="col-sm-2" action="{{ url_for('save') }}" method="POST" enctype="multipart/form-data">
+                                    <input type="submit" class="btn btn-info" value="Save">
+                                </form>
+                                <form class="col-sm-2" action="{{ url_for('download') }}" method="POST" enctype="multipart/form-data">
+                                    <input type="submit" class="btn btn-success" value="Download">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#      <h1 class="display-1">Menu</h1>#}
+{#        <div class="container-fluid">#}
+{#            <div class="d-flex flex-xl-row justify-content-xl-between flex-column">#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Zoom In</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Zoom Out</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Move left</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Move right</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Move up</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="p-2 flex-fill bd-highlight">#}
+{#                    <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">#}
+{#                        <button type="submit" class="btn btn-primary">Move down</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#                        <div class="p-2 flex-fill bd-highlight">#}
+{#                            <form id="" action="{{ url_for('brightness_addition') }}" method="POST" enctype="multipart/form-data">#}
+{#                                <button type="submit" class="btn btn-primary">Increase</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                        <div class="p-2 flex-fill bd-highlight">#}
+{#                            <form id="" action="{{ url_for('brightness_substraction') }}" method="POST" enctype="multipart/form-data">#}
+{#                                <button type="submit" class="btn btn-primary">Decrease</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="d-inline-flex">
+            <div class="p-2 flex-fill bd-highlight">
+{#          invert #}
+                <form id="" action="{{ url_for('invert') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Invert</button>
+                </form>
+            </div>
+            <div class="p-2 flex-fill bd-highlight">
+{#          grayscale #}
+                <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Grayscale</button>
+                </form>
+            </div>
+            <div class="p-2 flex-fill bd-highlight">
+{#          brightness #}
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionFormBrightness">Brightness</a>
+                </div>
+            </div>
+            <div class="p-2 flex-fill bd-highlight">
+{#          kmeans #}
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionFormKmeans">K-Means</a>
+                </div>
+            </div>
+            <div class="p-2 flex-fill bd-highlight">
+{#               lọc cạnh canny #}
+                <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Edge Detection</button>
+                </form>
+            </div>
+        </div>
+        <div class="d-inline-flex">
+            <div class="p-2 flex-fill bd-highlight">
+{#          Histogram equa     cân bằng sáng#}
+                <form id="" action="{{ url_for('histogram_equalizer') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Histogram Equalizer</button>
+                </form>
+            </div>
+{#          Smoothing     làm mịn ảnh#}
+            <div class="p-2 flex-fill bd-highlight">
+{#                <form id="" action="{{ url_for('smoothing') }}" method="POST" enctype="multipart/form-data">#}
+{#                    <button type="submit" class="btn btn-primary">Smoothing</button>#}
+{#                </form>#}
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionFormSmoothing">Smoothing</a>
+                </div>
+            </div>
+            <div class="p-2 flex-fill bd-highlight">
+{#          Sharpening     lọc sắc nét ảnh#}
+                <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-primary">Sharpening</button>
+                </form>
+            </div>
+            <div class="p-2 flex-fill bd-highlight mx-auto">
+{#          Segmentation   phân đoạn ảnh#}
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionFormSegmentation">Segmentation</a>
+                </div>
+            </div>
+            <div class="p-2 flex-fill bd-highlight mx-auto">
+{#          grabcut  cắt mp bit #}
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionFormGrabcut">Grabcut</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{#    modal brightness#}
+    <div class="modal fade" id="modalSubscriptionFormBrightness" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Brightness</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url_for('brightness') }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">Value</label>
+                            <input type="number" name="value" id="form2" class="form-control validate" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-indigo" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{#    modal kmeans#}
+    <div class="modal fade" id="modalSubscriptionFormKmeans" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">K-Means</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url_for('kmeans_clustering') }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">K</label>
+                            <input type="number" name="k" id="form2" class="form-control validate" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-indigo" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{#    modal segmentation#}
+    <div class="modal fade" id="modalSubscriptionFormSegmentation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Brightness</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="" action="{{ url_for('segmentation') }}" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">Lower</label>
+                            <input type="number" name="low" id="form2" class="form-control validate" placeholder="0-255"  min="0" max="255" required>
+                        </div>
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">High</label>
+                            <input type="number" name="high" id="form2" class="form-control validate" placeholder="0-255" min="0" max="255" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-indigo" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{#    grabcut#}
+        <div class="modal fade" id="modalSubscriptionFormGrabcut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Brightness</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="" action="{{ url_for('grabcut') }}" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">Number of Bit(s)</label>
+                            <input type="number" name="bit" id="form2" class="form-control validate" placeholder="1-8"  min="1" max="8" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-indigo" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{#    smoothing#}
+    <div class="modal fade" id="modalSubscriptionFormSmoothing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Brightness</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="" action="{{ url_for('smoothing') }}" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-4">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="form2">Number of Bit(s)</label>
+                            <select class="form-control" id="sel1" name="matrix">
+                                <option value="3">3x3</option>
+                                <option value="5">5x5</option>
+                                <option value="7">7x7</option>
+                                <option value="9">9x9</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-indigo" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+{% endblock %}
