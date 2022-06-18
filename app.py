@@ -1,7 +1,7 @@
 import sys
 
-import numpy as np
-from PIL import Image
+# import numpy as np
+# from PIL import Image
 import image_processing
 import os
 from flask import Flask, render_template, request, make_response, send_file

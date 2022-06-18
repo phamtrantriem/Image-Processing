@@ -1,9 +1,9 @@
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-import matplotlib.image as plt_img
+# import matplotlib.image as plt_img
 from collections import Counter
-from flask import request
+# from flask import request
 import cv2
 
 
