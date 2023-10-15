@@ -8,12 +8,12 @@
 #   git rm -r .ipynb_checkpoints/
 #
 
-.static/
+##.static/
 
 ## Image files
-*.jpeg
-*.jpg
-*.png
+##*.jpeg
+##*.jpg
+##*.png
 ### Linux ###
 *~
 
